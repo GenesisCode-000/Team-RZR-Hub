@@ -3,225 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RZR SYSTEM | Encrypted Archive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Hub de Scripts | FGH567 & che3t_2345</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0c;
-            --surface: #121216;
-            --primary: #00f2ff;
-            --danger: #ff3e3e;
-            --border: rgba(255, 255, 255, 0.05);
-            --text-main: #e1e1e6;
-            --text-dim: #88888f;
+            --bg: #0f1012;
+            --card-bg: #16171a;
+            --accent: #007bff;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+            --border: #2a2c31;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--bg); 
-            color: var(--text-main); 
-            font-family: 'Inter', sans-serif;
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Outfit', sans-serif;
             line-height: 1.6;
         }
 
-        .mono { font-family: 'JetBrains Mono', monospace; }
-
-        /* --- HEADER --- */
+        /* --- NAVIGATION --- */
         nav {
-            border-bottom: 1px solid var(--border);
-            padding: 20px 40px;
+            background: #000;
+            padding: 20px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 12, 0.8);
-            backdrop-filter: blur(12px);
-            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border);
         }
+        .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; }
+        .logo span { color: var(--accent); }
 
-        .status-dot {
-            width: 8px; height: 8px; background: #00ff88;
-            border-radius: 50%; display: inline-block;
-            margin-right: 8px; box-shadow: 0 0 10px #00ff88;
-        }
-
-        /* --- HERO --- */
-        .hero {
-            padding: 100px 20px;
+        /* --- HEADER --- */
+        header {
+            padding: 80px 10%;
             text-align: center;
-            max-width: 900px; margin: 0 auto;
+            background: radial-gradient(circle at center, #1a1c20 0%, #0f1012 100%);
         }
+        header h1 { font-size: 3rem; margin-bottom: 15px; }
+        header p { color: var(--text-dim); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
 
-        .hero h1 {
-            font-size: 3.5rem; font-weight: 700; letter-spacing: -2px;
-            background: linear-gradient(to bottom, #fff, #666);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
+        /* --- TEAM BOX --- */
+        .team-section {
+            display: flex; justify-content: center; gap: 40px; margin-top: 30px;
         }
-
-        .whitelist-badge {
-            display: inline-block; padding: 6px 12px;
-            border: 1px solid var(--danger); color: var(--danger);
-            font-size: 0.7rem; font-weight: bold; text-transform: uppercase;
-            border-radius: 4px; margin-bottom: 20px;
-        }
+        .member { background: var(--card-bg); padding: 10px 25px; border-radius: 8px; border: 1px solid var(--border); }
+        .member b { color: var(--accent); }
 
         /* --- GRID --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 25px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 
-        /* --- CARD STYLE --- */
+        /* --- CARDS --- */
         .card {
-            background: var(--surface);
+            background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: 0.3s;
         }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border); }
+        
+        .card-content { padding: 20px; }
+        .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; display: block; height: 45px; }
 
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
-
-        .card-image {
-            width: 100%; height: 210px; object-fit: cover;
-            opacity: 0.7; transition: 0.3s;
+        .btn-access {
+            width: 100%; padding: 12px;
+            background: var(--accent);
+            color: white; border: none;
+            border-radius: 6px; font-weight: 600;
+            cursor: pointer; transition: 0.2s;
         }
-        .card:hover .card-image { opacity: 1; }
+        .btn-access:hover { opacity: 0.8; }
 
-        .card-content { padding: 25px; }
-        .card-tag { font-size: 0.65rem; color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; }
-        .card-title { font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; }
-
-        .btn-lock {
-            width: 100%; padding: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            color: #fff; border-radius: 8px;
-            cursor: pointer; font-family: 'JetBrains Mono';
-            font-size: 0.8rem; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+        /* --- SINCERITY --- */
+        .info-box {
+            background: var(--card-bg); padding: 40px; border-radius: 12px;
+            border: 1px solid var(--border); margin-top: 60px;
         }
-
-        .btn-lock:hover { background: var(--primary); color: #000; border-color: var(--primary); font-weight: bold; }
-
-        /* --- PROTECTION NOTICE --- */
-        .protection-info {
-            background: rgba(255, 62, 62, 0.03);
-            border: 1px solid rgba(255, 62, 62, 0.2);
-            padding: 40px; border-radius: 16px; margin-top: 80px;
-        }
-
-        .protection-info h2 { color: var(--danger); font-size: 1.5rem; margin-bottom: 15px; }
+        .info-box h2 { margin-bottom: 20px; color: var(--accent); }
+        .info-box p { margin-bottom: 15px; color: var(--text-dim); }
 
         /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; inset: 0;
-            background: rgba(0,0,0,0.95); z-index: 2000;
-            align-items: center; justify-content: center; padding: 20px;
-        }
-
         .modal {
-            background: var(--surface); border: 1px solid var(--primary);
-            max-width: 500px; width: 100%; padding: 40px; border-radius: 12px;
-            text-align: center;
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            z-index: 1000; align-items: center; justify-content: center;
         }
-
-        .modal h2 { margin-bottom: 20px; font-weight: 700; color: var(--primary); }
-        .discord-box {
-            background: #1a1a20; padding: 20px; border-radius: 8px;
-            margin: 25px 0; border: 1px dashed var(--primary);
+        .modal-content {
+            background: var(--card-bg); padding: 40px; border-radius: 15px;
+            border: 1px solid var(--accent); text-align: center; max-width: 450px; width: 90%;
         }
-
-        .btn-close { margin-top: 20px; background: none; border: none; color: var(--text-dim); cursor: pointer; text-decoration: underline; }
+        .discord-id { 
+            display: block; margin: 20px 0; padding: 15px; 
+            background: #000; border-radius: 8px; 
+            color: var(--accent); font-weight: 700; font-size: 1.3rem;
+        }
+        .close-btn { background: none; border: none; color: #ff4d4d; cursor: pointer; font-weight: bold; margin-top: 20px; }
 
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="mono" style="font-weight: bold; font-size: 1.1rem;">RZR.SYSTEM<span style="color: var(--primary);">_</span></div>
-    <div class="mono" style="font-size: 0.8rem;">
-        <span class="status-dot"></span> ENCRYPTED_SERVER: ACTIVE
-    </div>
+    <div class="logo">TEAM <span>RZR</span> HUB</div>
+    <div style="font-size: 0.9rem; color: var(--text-dim);">FGH567 Official Website</div>
 </nav>
 
-<section class="hero">
-    <span class="whitelist-badge">Whitelist System V2 Active</span>
-    <h1>Archive Privée de FGH567</h1>
-    <p style="color: var(--text-dim);">Développeur depuis 2010. Mes outils sont réservés aux membres vérifiés. Tout usage non autorisé ou tentative de modification entraînera un bannissement définitif de l'infrastructure.</p>
-</section>
+<header>
+    <h1>Scripts Privés & Sécurisés</h1>
+    <p>Bienvenue sur notre catalogue. Tous les scripts présents ici sont développés pour être performants et sécurisés.</p>
+    
+    <div class="team-section">
+        <div class="member">Fondateur & Gérant : <b>FGH567</b></div>
+        <div class="member">Scripteur : <b>che3t_2345</b></div>
+    </div>
+</header>
 
 <div class="container">
     <div class="grid">
         <div class="card">
-            <img src="https://tr.rbxcdn.com/180DAY-52456ff62f1db414ffad93789387c18a/768/432/Image/Webp/noFilter" class="card-image">
+            <img src="https://tr.rbxcdn.com/180DAY-52456ff62f1db414ffad93789387c18a/768/432/Image/Webp/noFilter" class="card-img">
             <div class="card-content">
-                <span class="card-tag">PROTECTED_LUA</span>
-                <div class="card-title">+1 Speed Hover board Escape !</div>
-                <button class="btn-lock" onclick="toggleModal(true)">
-                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 0 2-2 2 2 0 0 0-2-2 2 2 0 0 0-2 2 2 2 0 0 0 2 2m6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2m-6-5c1.66 0 3 1.34 3 3v2H9V6c0-1.66 1.34-3 3-3z"/></svg>
-                    REQUEST ACCESS
-                </button>
+                <span class="card-title">+1 Speed Hover board Escape !</span>
+                <button class="btn-access" onclick="openModal()">DEMANDER L'ACCÈS</button>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://tr.rbxcdn.com/180DAY-b1550162673974d284b243e8dc5c88b4/768/432/Image/Webp/noFilter" class="card-image">
+            <img src="https://tr.rbxcdn.com/180DAY-b1550162673974d284b243e8dc5c88b4/768/432/Image/Webp/noFilter" class="card-img">
             <div class="card-content">
-                <span class="card-tag">PROTECTED_LUA</span>
-                <div class="card-title">Highway Showdown</div>
-                <button class="btn-lock" onclick="toggleModal(true)">REQUEST ACCESS</button>
+                <span class="card-title">Highway Showdown [🌵 NEW MAP]</span>
+                <button class="btn-access" onclick="openModal()">DEMANDER L'ACCÈS</button>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://tr.rbxcdn.com/180DAY-49d0b32f9c72aecd85d4d89c98a598f8/768/432/Image/Webp/noFilter" class="card-image">
+            <img src="https://tr.rbxcdn.com/180DAY-49d0b32f9c72aecd85d4d89c98a598f8/768/432/Image/Webp/noFilter" class="card-img">
             <div class="card-content">
-                <span class="card-tag">PROTECTED_LUA</span>
-                <div class="card-title">Truck RNG</div>
-                <button class="btn-lock" onclick="toggleModal(true)">REQUEST ACCESS</button>
+                <span class="card-title">Truck RNG</span>
+                <button class="btn-access" onclick="openModal()">DEMANDER L'ACCÈS</button>
             </div>
         </div>
-        
+
+        <div class="card">
+            <img src="https://tr.rbxcdn.com/180DAY-dca01ce2f08e9b0c2be10d8af2f43558/768/432/Image/Webp/noFilter" class="card-img">
+            <div class="card-content">
+                <span class="card-title">Pushing Together</span>
+                <button class="btn-access" onclick="openModal()">DEMANDER L'ACCÈS</button>
+            </div>
         </div>
 
-    <div class="protection-info">
-        <h2 class="mono">POLITIQUE DE SÉCURITÉ (WHITELIST)</h2>
-        <p style="margin-bottom: 15px;">Chaque script délivré est lié à votre identifiant unique. Si un script est retrouvé en ligne ou modifié :</p>
-        <ul style="list-style: none; color: var(--text-dim); font-size: 0.95rem;">
-            <li>• Votre accès sera immédiatement révoqué via le système distant.</li>
-            <li>• Votre profil sera blacklisté de tous mes futurs projets.</li>
-            <li>• Une plainte sera déposée auprès des hébergeurs de fichiers.</li>
-        </ul>
-        <p style="margin-top: 20px; font-weight: bold;">Respectez mon travail de 15 ans, je respecterais votre expérience de jeu.</p>
+        <div class="card">
+            <img src="https://scriptblox.com/images/script/9606797934-1766202243138.png" class="card-img">
+            <div class="card-content">
+                <span class="card-title">Train VS Cars Remastered</span>
+                <button class="btn-access" onclick="openModal()">DEMANDER L'ACCÈS</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://tr.rbxcdn.com/180DAY-0937b2b0c4ec68e44c9c6d003c3dde7b/768/432/Image/Webp/noFilter" class="card-img">
+            <div class="card-content">
+                <span class="card-title">Slide 999,999 Miles Obby</span>
+                <button class="btn-access" onclick="openModal()">DEMANDER L'ACCÈS</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h2>À propos de nous</h2>
+        <p>Je suis <b>FGH567</b>, présent sur Roblox depuis 2010. Ce site me permet de gérer et de distribuer les outils créés par mon ami et collaborateur <b>che3t_2345</b>.</p>
+        <p>Pour éviter les vols de code et les modifications non autorisées, nous avons décidé de passer tous nos scripts en accès privé. Cela nous permet de savoir qui utilise nos outils et de garantir qu'ils fonctionnent toujours correctement.</p>
+        <p>Si vous souhaitez utiliser l'un de nos scripts, la procédure est simple : contactez-moi sur Discord, nous discuterons de votre demande, et si vous êtes validé, vous recevrez votre accès personnel.</p>
     </div>
 </div>
 
-<div class="modal-overlay" id="accessModal">
-    <div class="modal">
-        <h2 class="mono">ACCÈS RESTREINT</h2>
-        <p style="color: var(--text-dim);">Pour intégrer la <b>Whitelist</b>, vous devez passer un court entretien de vérification.</p>
-        
-        <div class="discord-box">
-            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: 5px;">Contact Discord</p>
-            <p class="mono" style="font-size: 1.4rem; font-weight: bold;">valcren_23</p>
-        </div>
-
-        <p style="font-size: 0.9rem;">Envoyez un message avec le nom du script souhaité et votre pseudo Roblox.</p>
-        
-        <button class="btn-close" onclick="toggleModal(false)">Retour au terminal</button>
+<div class="modal" id="contactModal">
+    <div class="modal-content">
+        <h3>Procédure de Whitelist</h3>
+        <p style="margin-top:15px; color: var(--text-dim);">Pour obtenir le script et votre clé d'accès, merci de m'ajouter sur Discord :</p>
+        <span class="discord-id">valcren_23</span>
+        <p style="font-size: 0.85rem;">Indiquez votre pseudo Roblox et le script souhaité dans votre message.</p>
+        <button class="close-btn" onclick="closeModal()">FERMER</button>
     </div>
 </div>
 
 <script>
-    function toggleModal(show) {
-        const modal = document.getElementById('accessModal');
-        modal.style.display = show ? 'flex' : 'none';
+    function openModal() {
+        document.getElementById('contactModal').style.display = 'flex';
     }
-
-    // Fermeture avec la touche Echap
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") toggleModal(false);
-    });
+    function closeModal() {
+        document.getElementById('contactModal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+        if (event.target.className == 'modal') { closeModal(); }
+    }
 </script>
 
 </body>
